@@ -1,0 +1,59 @@
+判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。
+
+152ms
+class Solution(object):
+    def isPalindrome(self, x):
+        x = str(x)
+        if x == x[::-1]:
+            return True
+        else:
+            return False
+
+116 ms
+class Solution(object):
+    def isPalindrome(self, x):
+        return True if str(x) == str(x)[::-1] else False
+
+
+不转成字符串解决：
+
+双指针 转成list  128 ms
+class Solution(object):
+    def isPalindrome(self, x):
+        if x < 0:
+            return False
+        else:
+            i = 0
+            j = len(str(x))-1
+            x = list(str(x))
+            while i <= j:
+                if x[i] ==x[j]:
+                    i += 1
+                    j -= 1
+                else:                    
+                    return False
+                    break
+            return True
+
+
+反转一半数字 216 ms
+class Solution(object):
+    def isPalindrome(self, x):
+        if x < 0:
+            return False
+        elif x % 10 ==0 and x != 0:
+            return False
+        else:
+            ans = 0
+            i = 0
+            j = len(str(x))
+            while i < j / 2:
+                ans = ans*10 + x % 10
+                x = x / 10
+                i += 1
+            if j % 2 != 0:
+                x = x / 10               
+            return True if ans == x else False
+
+
+
